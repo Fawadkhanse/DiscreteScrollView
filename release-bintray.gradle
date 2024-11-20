@@ -1,0 +1,43 @@
+apply plugin: 'com.android.library'
+apply plugin: 'maven-publish'
+
+// Define library metadata
+def upload = [
+        artifactId : 'discrete-scrollview',
+        groupId    : 'com.yarolegovich',
+        description: 'A scrollable list of items that centers the current element and provides easy-to-use APIs for cool item animations.',
+        version    : '1.5.1',
+        licenses   : ['Apache-2.0']
+]
+
+// Task to generate a sources JAR
+task androidSourcesJar(type: Jar) {
+    archiveClassifier.set('sources')
+    from android.sourceSets.main.java.srcDirs
+}
+
+// Set library version
+version = upload.version
+
+// Configure publishing
+publishing {
+    publications {
+        LibRelease(MavenPublication) {
+            from components.release // Use the Android release component
+
+            artifact androidSourcesJar // Attach the sources JAR
+
+            // Set artifact details
+            artifactId = upload.artifactId
+            groupId = upload.groupId
+            version = upload.version
+        }
+    }
+}
+
+// Repositories for dependencies
+repositories {
+    google()
+    maven { url "https://jitpack.io" }
+    mavenCentral()
+}

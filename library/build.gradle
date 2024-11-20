@@ -1,0 +1,43 @@
+apply plugin: 'com.android.library'
+apply plugin: 'maven-publish'
+
+// Android configuration block
+android {
+    namespace "com.yarolegovich.discretescrollview" // Replace with your library's package name
+    compileSdkVersion 34
+    buildToolsVersion "34.0.0"
+
+    defaultConfig {
+        minSdkVersion 14
+        targetSdkVersion 34
+        versionCode 1
+        versionName "1.0"
+
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+    }
+
+    // Optional: Specify build types or product flavors here if necessary
+}
+
+// Dependencies block
+dependencies {
+    // Core dependencies
+    implementation 'androidx.recyclerview:recyclerview:1.0.0'
+    implementation 'androidx.annotation:annotation:1.1.0'
+
+    // Test dependencies
+    testImplementation 'org.robolectric:robolectric:3.0'
+    testImplementation 'junit:junit:4.13'
+    testImplementation 'org.mockito:mockito-core:2.13.0'
+    testImplementation 'org.hamcrest:hamcrest-library:1.3'
+
+    // Debug dependencies
+    debugImplementation 'androidx.appcompat:appcompat:1.1.0'
+
+    // Android test dependencies
+    androidTestImplementation 'androidx.test.espresso:espresso-core:3.1.0'
+    androidTestImplementation 'androidx.test.ext:junit:1.1.1'
+    androidTestImplementation 'androidx.test:runner:1.1.1'
+    androidTestImplementation 'androidx.test:rules:1.1.1'
+    androidTestImplementation 'org.hamcrest:hamcrest-library:1.3'
+}
