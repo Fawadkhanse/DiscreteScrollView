@@ -10,6 +10,7 @@ def upload = [
         licenses   : ['Apache-2.0']
 ]
 
+
 // Task to generate a sources JAR
 task androidSourcesJar(type: Jar) {
     archiveClassifier.set('sources')
