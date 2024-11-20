@@ -1,6 +1,14 @@
 apply plugin: 'com.android.library'
 apply plugin: 'maven-publish'
 
+def upload = [
+        artifactId : 'discrete-scrollview',
+        groupId    : 'com.github.Fawadkhanse',
+        description: 'A scrollable list of items that centers the current element and provides easy-to-use APIs for cool item animations.',
+        version    : '1.5.1',
+        licenses   : ['Apache-2.0']
+]
+
 // Android configuration block
 android {
     namespace "com.yarolegovich.discretescrollview" // Replace with your library's package name
@@ -12,8 +20,15 @@ android {
         targetSdkVersion 34
         versionCode 1
         versionName "1.0"
-
+        manifestPlaceholders = [exportedDefault: "true"]
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
     }
 
     // Optional: Specify build types or product flavors here if necessary
@@ -40,4 +55,20 @@ dependencies {
     androidTestImplementation 'androidx.test:runner:1.1.1'
     androidTestImplementation 'androidx.test:rules:1.1.1'
     androidTestImplementation 'org.hamcrest:hamcrest-library:1.3'
+}
+
+afterEvaluate {
+    publishing {
+        publications {
+            // Create a MavenPublication for the release variant
+            release(MavenPublication) {
+                // Get the release component using android.libraryVariants
+               // from components.getByName("release")
+                artifact("$buildDir/outputs/aar/library-release.aar")
+                artifactId = upload.artifactId
+                groupId = upload.groupId
+                version = upload.version
+            }
+        }
+    }
 }

@@ -6,7 +6,7 @@ android {
     namespace "com.yarolegovich.discretescrollview.sample" // Replace with your library's package name
     buildToolsVersion "34.0.0"
     defaultConfig {
-        applicationId "com.yarolegovich.discretescrollview.sample"
+        applicationId "om.yarolegovich.discretescrollview.sample"
         minSdkVersion 14
         targetSdkVersion 34
         versionCode 1

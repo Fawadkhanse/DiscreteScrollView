@@ -37,7 +37,7 @@ public class TestActivity extends AppCompatActivity implements DiscreteScrollVie
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
-        setTheme(R.style.Theme_AppCompat_Light_NoActionBar);
+        setTheme(androidx.appcompat.R.style.Theme_AppCompat_Light_NoActionBar);
 
         super.onCreate(savedInstanceState);
 
